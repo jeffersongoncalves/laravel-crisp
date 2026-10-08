@@ -1,0 +1,77 @@
+{
+    "name": "jeffersongoncalves/laravel-crisp",
+    "description": "Crisp for Laravel: render the live chat widget in your Blade layouts, with the settings stored in the database via spatie/laravel-settings.",
+    "keywords": [
+        "jeffersongoncalves",
+        "laravel",
+        "laravel-crisp",
+        "crisp",
+        "live-chat",
+        "chat-widget",
+        "customer-support",
+        "chat",
+        "spatie-laravel-settings"
+    ],
+    "homepage": "https://github.com/jeffersongoncalves/laravel-crisp",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jefferson Gonçalves",
+            "email": "gerson.simao.92@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3|^8.4",
+        "laravel/framework": "^12.61.1|^13.12.0",
+        "spatie/laravel-package-tools": "^1.14.0",
+        "spatie/laravel-settings": "^3.0"
+    },
+    "require-dev": {
+        "jeffersongoncalves/laravel-open-hours": "^1.0",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.27",
+        "orchestra/testbench": "^10.0|^11.0",
+        "pestphp/pest": "^3.7.4|^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0|^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JeffersonGoncalves\\Crisp\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JeffersonGoncalves\\Crisp\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JeffersonGoncalves\\Crisp\\CrispServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "suggest": {
+        "jeffersongoncalves/laravel-open-hours": "Show the chat only during opening hours (only_when_open)"
+    }
+}
