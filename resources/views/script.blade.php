@@ -2,7 +2,7 @@
 
 @if($settings->shouldRender())
     @php($user = $settings->identify_users ? auth()->user() : null)
-    <script type="text/javascript">
+    <script @if(\Illuminate\Support\Facades\Vite::cspNonce()) nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}" @endif type="text/javascript">
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = @js($settings->website_id);
         @if(filled(data_get($user, 'email')))
