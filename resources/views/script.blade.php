@@ -1,8 +1,11 @@
+@php
+    $cookieConsent = function_exists('cookie_consent_script_attributes') ? cookie_consent_script_attributes('crisp') : '';
+@endphp
 @php($settings = app(\JeffersonGoncalves\Crisp\Settings\CrispSettings::class))
 
 @if($settings->shouldRender())
     @php($user = $settings->identify_users ? auth()->user() : null)
-    <script @if(\Illuminate\Support\Facades\Vite::cspNonce()) nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}" @endif type="text/javascript">
+    <script{!! $cookieConsent !!} @if(\Illuminate\Support\Facades\Vite::cspNonce()) nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}" @endif>
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = @js($settings->website_id);
         @if(filled(data_get($user, 'email')))
